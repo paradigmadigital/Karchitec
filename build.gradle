@@ -6,9 +6,20 @@ buildscript {
         maven { url 'https://maven.google.com' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.2'
+        classpath 'com.android.tools.build:gradle:2.3.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
+}
+
+plugins {
+    id "io.gitlab.arturbosch.detekt" version "1.0.0.M11"
+}
+
+detekt {
+    version = "1.0.0.M11"
+    config = "$input/detekt.yml"
+    input = "$input/app/src/main/java"
+    filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
 }
 
 allprojects {
